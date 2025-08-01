@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="home-page">
+  <!-- Banner container with relative positioning -->
+  <div class="banner-container">
+    <img src="{{ url_for('static', filename='img/Home.png') }}"
+         class="home-banner" alt="Banner">
+    <!-- Overlay button -->
+    <a href="/search" class="btn overlay-btn btn-primary btn-lg">____________
+    </a>
+  </div>
+</body>
+</html>

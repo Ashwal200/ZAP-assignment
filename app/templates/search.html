@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+  <!-- Stylesheet for layout/styling -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- Chart.js library used to render the forecast chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="search-page">
+
+  <!-- Banner with trigger button for opening the forecast popup -->
+  <div class="banner-container">
+    <img src="{{ url_for('static', filename='img/Product.png') }}" class="home-banner" alt="Product">
+    <!-- Clicking this opens the forecast / subscription popup. current price passed via data attribute -->
+    <a id="alertBtn" href="#" class="btn overlay-product-btn btn-secondary btn-lg"
+       data-current-price="{{ current_price }}">
+      AI Price Forecast
+    </a>
+  </div>
+
+  <!-- Popup: shows 7-day forecast and subscription form -->
+  <div id="resultPopup" class="popup hidden">
+    <div class="popup-content">
+      <!-- Close control -->
+      <button id="closePopup" class="close-btn">&times;</button>
+
+      <!-- Forecast title and explanation -->
+      <h3>Next Week Price Forecast</h3>
+      <a>This chart shows our AI-predicted prices for the next 7 days.<br><br></a>
+
+      <!-- Chart canvas -->
+      <div class="chart-container">
+        <canvas id="forecastChart"></canvas>
+      </div>
+
+      <!-- Subscription form: user can enter contact and target price to get alerts -->
+      <div id="subscriptionForm">
+        <div class="form-group">
+          <!-- Dynamic insight text (e.g., "Wait for drop" or "Buy now") -->
+          <p id="priceInsight" style="text-align:center; font-weight:bold; margin-top:10px;"></p>
+          <label>Want a price drop alert? Just enter your phone and target price below!<br><br></label>
+          <label for="phoneNumber">Phone Number</label>
+          <input id="phoneNumber" class="form-control" placeholder="+972501234567">
+        </div>
+
+        <div class="form-group">
+          <label for="desiredPrice">Desired Price (₪)</label>
+          <input id="desiredPrice" type="number" class="form-control" placeholder="e.g. 1500">
+        </div>
+
+        <!-- Submit to create subscription -->
+        <button id="subscribeBtn" class="btn btn-secondary w-100">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forecast logic script: handles fetching forecast, rendering chart, subscription -->
+  <script src="{{ url_for('static', filename='js/forecast.js') }}"></script>
+</body>
+</html>
